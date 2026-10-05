@@ -50,12 +50,18 @@ import {
   Edit3,
   Save,
   Pencil,
+  Globe,
 } from 'lucide-react';
+import { useLanguage } from '../../stores/languageStore';
+import { TRANSLATIONS } from '../../config/translations';
 
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
+  const { lang, toggleLanguage } = useLanguage();
+  const t = TRANSLATIONS[lang];
 
   // Data & Global State
+
   const [applications, setApplications] = useState<JourneyApplication[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
@@ -591,7 +597,16 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={toggleLanguage}
+              className="bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700 font-bold text-xs px-3 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-2xs"
+              title="Switch Language / تغيير اللغة"
+            >
+              <Globe className="w-3.5 h-3.5 text-purple-400" />
+              <span>{t.langToggle}</span>
+            </button>
+
             <div className="hidden md:flex items-center gap-1.5 text-[11px] text-slate-400 bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-700/60">
               <Clock className="w-3.5 h-3.5 text-purple-400" />
               <span>
@@ -609,16 +624,17 @@ export default function AdminDashboardPage() {
               className="bg-slate-700 hover:bg-slate-600 text-slate-200 p-2 sm:px-3 sm:py-2 rounded-xl text-xs flex items-center gap-1.5 transition-colors border border-slate-600/80"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-              <span className="hidden sm:inline">Refresh</span>
+              <span className="hidden sm:inline">{t.refresh}</span>
             </button>
 
             <button
               onClick={handleLogout}
               className="bg-rose-950/60 hover:bg-rose-900/80 text-rose-200 border border-rose-800/80 text-xs font-semibold px-3 py-2 rounded-xl flex items-center gap-1.5 transition-colors"
             >
-              <LogOut className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Logout</span>
+              <LogOut className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.logout}</span>
             </button>
           </div>
+
         </div>
       </header>
 
