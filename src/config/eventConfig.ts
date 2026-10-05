@@ -54,7 +54,7 @@ export const EVENT_CONFIG: EventConfig = {
   laptopMandatory: true,
   registrationStartDate: '2026-10-01',
   registrationEndDate: '2026-10-25',
-  whatsappGroupUrl: 'https://chat.whatsapp.com/IEEE-Innovation-WebDev-Journey-2026',
+  whatsappGroupUrl: 'https://chat.whatsapp.com/H3OKxmqRWavLBWcf39T44J',
   contactEmail: 'webdev.journey@ieee-innovation.edu',
   logos: {
     iuLogo: '/iu-logo-transparent.png',
