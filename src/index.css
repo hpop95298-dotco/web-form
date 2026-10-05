@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+/* ============================================
+   IEEE PLATFORM — GLOBAL DESIGN SYSTEM
+   Design Tokens, Typography, Colors, Spacing
+   ============================================ */
+
+@layer base {
+  /* ── Design Tokens ── */
+  :root {
+    /* IEEE Brand Colors */
+    --color-ieee-navy:        #002855;
+    --color-ieee-navy-dark:   #001a38;
+    --color-ieee-navy-light:  #0d3a6e;
+    --color-ieee-blue:        #004B87;
+    --color-ieee-teal:        #00B4D8;
+    --color-ieee-teal-light:  #48CAE4;
+    --color-ieee-teal-dark:   #0096C7;
+
+    /* Neutral Palette */
+    --color-gray-50:   #F8FAFC;
+    --color-gray-100:  #F1F5F9;
+    --color-gray-200:  #E2E8F0;
+    --color-gray-300:  #CBD5E1;
+    --color-gray-400:  #94A3B8;
+    --color-gray-500:  #64748B;
+    --color-gray-600:  #475569;
+    --color-gray-700:  #334155;
+    --color-gray-800:  #1E293B;
+    --color-gray-900:  #0F172A;
+
+    /* Status Colors */
+    --color-success:       #16A34A;
+    --color-success-light: #DCFCE7;
+    --color-warning:       #D97706;
+    --color-warning-light: #FEF3C7;
+    --color-error:         #DC2626;
+    --color-error-light:   #FEE2E2;
+    --color-info:          #2563EB;
+    --color-info-light:    #DBEAFE;
+
+    /* Spacing Scale (4px base) */
+    --space-1:  4px;
+    --space-2:  8px;
+    --space-3:  12px;
+    --space-4:  16px;
+    --space-5:  20px;
+    --space-6:  24px;
+    --space-8:  32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* Border Radius */
+    --radius-sm:   4px;
+    --radius-md:   8px;
+    --radius-lg:   12px;
+    --radius-xl:   16px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+    --shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+
+    /* Typography */
+    --font-family-base: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --font-family-arabic: 'Tajawal', 'IBM Plex Arabic', sans-serif;
+    --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Font Sizes */
+    --text-xs:   0.75rem;   /* 12px */
+    --text-sm:   0.875rem;  /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg:   1.125rem;  /* 18px */
+    --text-xl:   1.25rem;   /* 20px */
+    --text-2xl:  1.5rem;    /* 24px */
+    --text-3xl:  1.875rem;  /* 30px */
+    --text-4xl:  2.25rem;   /* 36px */
+
+    /* Transition */
+    --transition-fast:   150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow:   400ms ease;
+
+    /* Sidebar width */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 68px;
+    --topbar-height: 64px;
+  }
+
+  /* ── Base Styles ── */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-family-base);
+    font-size: var(--text-base);
+    color: var(--color-gray-800);
+    background-color: var(--color-gray-50);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ── Typography Scale ── */
+  h1 { font-size: var(--text-4xl); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--color-ieee-navy); }
+  h2 { font-size: var(--text-3xl); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--color-ieee-navy); }
+  h3 { font-size: var(--text-2xl); font-weight: 700; line-height: 1.3; color: var(--color-gray-800); }
+  h4 { font-size: var(--text-xl);  font-weight: 600; line-height: 1.4; color: var(--color-gray-800); }
+  h5 { font-size: var(--text-lg);  font-weight: 600; line-height: 1.4; color: var(--color-gray-700); }
+  h6 { font-size: var(--text-base);font-weight: 600; line-height: 1.5; color: var(--color-gray-700); }
+
+  p  { line-height: 1.7; color: var(--color-gray-600); margin-bottom: 1rem; }
+
+  a  { color: var(--color-ieee-teal); text-decoration: none; transition: color var(--transition-fast); }
+  a:hover { color: var(--color-ieee-teal-dark); }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-gray-100); }
+  ::-webkit-scrollbar-thumb { background: var(--color-gray-300); border-radius: var(--radius-full); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-gray-400); }
+
+  /* ── Focus Ring ── */
+  :focus-visible {
+    outline: 2px solid var(--color-ieee-teal);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Selection ── */
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-ieee-teal) 20%, transparent);
+    color: var(--color-ieee-navy);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+@layer utilities {
+
+  /* ── IEEE Brand ── */
+  .bg-ieee-navy       { background-color: var(--color-ieee-navy); }
+  .bg-ieee-blue       { background-color: var(--color-ieee-blue); }
+  .bg-ieee-teal       { background-color: var(--color-ieee-teal); }
+  .text-ieee-navy     { color: var(--color-ieee-navy); }
+  .text-ieee-teal     { color: var(--color-ieee-teal); }
+  .border-ieee-teal   { border-color: var(--color-ieee-teal); }
+
+  /* ── Gradient ── */
+  .gradient-ieee {
+    background: linear-gradient(135deg, var(--color-ieee-navy) 0%, var(--color-ieee-blue) 60%, var(--color-ieee-teal-dark) 100%);
+  }
+  .gradient-ieee-subtle {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+  }
+
+  /* ── Glass Effect ── */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* ── Card Base ── */
+  .card {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-normal);
+  }
+  .card:hover { box-shadow: var(--shadow-md); }
+
+  /* ── Page Section ── */
+  .section { padding: var(--space-16) 0; }
+  .container-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  /* ── Animate ── */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease forwards;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.4s ease forwards;
+  }
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  /* ── Transition Base ── */
+  .transition-base { transition: all var(--transition-normal); }
+
+  /* ── Text Gradient ── */
+  .text-gradient-ieee {
+    background: linear-gradient(135deg, var(--color-ieee-navy), var(--color-ieee-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Skeleton Loader ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--color-gray-100) 25%, var(--color-gray-200) 50%, var(--color-gray-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Dashboard Layout ── */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+}
+
+.dashboard-main {
+  flex: 1;
+  margin-right: var(--sidebar-width);
+  padding-top: var(--topbar-height);
+  transition: margin-right var(--transition-normal);
+  min-width: 0;
+}
+
+.dashboard-main.sidebar-collapsed {
+  margin-right: var(--sidebar-collapsed-width);
+}
+
+.dashboard-content {
+  padding: var(--space-6);
+  max-width: 1400px;
+}
+
+/* RTL Support for Arabic */
+[dir="rtl"] .dashboard-main {
+  margin-right: 0;
+  margin-left: var(--sidebar-width);
+}
+[dir="rtl"] .dashboard-main.sidebar-collapsed {
+  margin-left: var(--sidebar-collapsed-width);
+}

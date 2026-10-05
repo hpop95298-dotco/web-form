@@ -1,0 +1,90 @@
+import type { User } from '@/types';
+
+// One mock user per role for DEV Role Switcher
+export const MOCK_USERS: User[] = [
+  {
+    id: 'u-superadmin',
+    name: 'أنس المدير',
+    email: 'superadmin@ieee.org',
+    role: 'super_admin',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Anas&backgroundColor=002855&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 'u-webteam',
+    name: 'ضياء ويب تيم',
+    email: 'webteam@ieee.org',
+    role: 'web_team',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Diaa&backgroundColor=4338ca&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 'u-superorg',
+    name: 'سارة المشرفة',
+    email: 'superorg@ieee.org',
+    role: 'super_organizer',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Sara&backgroundColor=1d4ed8&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-02-01T00:00:00Z',
+  },
+  {
+    id: 'u-org',
+    name: 'محمد تنظيم',
+    email: 'org@ieee.org',
+    role: 'org',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Mohamed&backgroundColor=0e7490&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-02-15T00:00:00Z',
+  },
+  {
+    id: 'u-admin',
+    name: 'عبدالله إداري',
+    email: 'admin@ieee.org',
+    role: 'admin',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Abdullah&backgroundColor=c2410c&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-03-01T00:00:00Z',
+  },
+  {
+    id: 'u-hr',
+    name: 'ريم الموارد',
+    email: 'hr@ieee.org',
+    role: 'hr',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Reem&backgroundColor=15803d&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-03-01T00:00:00Z',
+  },
+  {
+    id: 'u-pr',
+    name: 'نور علاقات',
+    email: 'pr@ieee.org',
+    role: 'pr',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Nour&backgroundColor=be185d&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-03-10T00:00:00Z',
+  },
+  {
+    id: 'u-media',
+    name: 'كريم إعلام',
+    email: 'media@ieee.org',
+    role: 'media',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Karim&backgroundColor=a16207&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-03-15T00:00:00Z',
+  },
+  {
+    id: 'u-user',
+    name: 'أحمد المستخدم',
+    email: 'user@ieee.org',
+    role: 'user',
+    collegeId: 'CS-2024-001',
+    avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Ahmed&backgroundColor=475569&textColor=ffffff',
+    isActive: true,
+    createdAt: '2024-04-01T00:00:00Z',
+  },
+];
+
+export const getMockUserByRole = (role: string) =>
+  MOCK_USERS.find(u => u.role === role);
