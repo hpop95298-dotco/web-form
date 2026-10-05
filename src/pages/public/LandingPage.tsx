@@ -156,38 +156,38 @@ export default function LandingPage() {
               {/* Headlines */}
               <div className="space-y-2">
                 <h3 className="text-xs sm:text-sm font-bold tracking-wider text-blue-700 uppercase">
-                  {EVENT_CONFIG.orgName}
+                  {t.orgName}
                 </h3>
                 <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  {EVENT_CONFIG.eventName}
+                  {t.heroTitle}
                 </h1>
                 <p className="text-lg sm:text-2xl font-bold text-purple-800 pt-1">
-                  {EVENT_CONFIG.tagline}
+                  {t.tagline}
                 </p>
               </div>
 
-              {/* Concise Description (2-3 lines) */}
+              {/* Concise Description */}
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                A practical learning initiative designed for Innovation University students to master core web development concepts, backend databases, and .NET architecture from scratch.
+                {t.heroDesc}
               </p>
 
               {/* Information Pills */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1">
                 <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold px-3 py-1.5 rounded-lg">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  FREE Participation
+                  {t.snapshotFreeTitle}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-purple-50 text-purple-800 border border-purple-200 text-xs font-semibold px-3 py-1.5 rounded-lg">
                   <Layers className="w-3.5 h-3.5 text-purple-600" />
-                  5 Learning Stages
+                  {t.snapshotStagesTitle}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-300 text-xs font-semibold px-3 py-1.5 rounded-lg">
                   <Laptop className="w-3.5 h-3.5 text-amber-600" />
-                  Laptop Required
+                  {t.snapshotLaptopTitle}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200 text-xs font-semibold px-3 py-1.5 rounded-lg">
                   <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-                  Innovation University Students
+                  {t.studentReqTitle}
                 </span>
               </div>
 
@@ -198,7 +198,7 @@ export default function LandingPage() {
                     to="/register"
                     className="w-full sm:w-auto bg-purple-700 hover:bg-purple-800 text-white font-bold px-7 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2.5 text-sm"
                   >
-                    Apply Now
+                    {t.applyNow}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 ) : (
@@ -206,7 +206,7 @@ export default function LandingPage() {
                     disabled
                     className="w-full sm:w-auto bg-slate-300 text-slate-600 font-bold px-7 py-3.5 rounded-xl cursor-not-allowed text-sm"
                   >
-                    Registration Closed
+                    {t.regClosed}
                   </button>
                 )}
 
@@ -214,10 +214,11 @@ export default function LandingPage() {
                   href="#roadmap"
                   className="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-700 font-semibold px-7 py-3.5 rounded-xl border border-slate-300 shadow-xs transition-all duration-200 flex items-center justify-center gap-2 text-sm"
                 >
-                  Explore Journey
+                  {t.roadmap}
                   <ChevronDown className="w-4 h-4 text-slate-500" />
                 </a>
               </div>
+
             </div>
 
             {/* Right Column: Code Window / Technical Visual */}

@@ -23,7 +23,19 @@ export default function AdminLoginPage() {
 
     const cleanInput = username.trim().toLowerCase();
 
-    // Supabase auth check (if configured with real Supabase instance)
+    // Direct Admin Credentials Check for Kazanova
+    const validUsernames = ['kazanova', 'kazanova@ieee-innovation.edu', 'admin', 'admin@ieee-innovation.edu'];
+    const validPassword = 'Kazanova54321@';
+
+    if (validUsernames.includes(cleanInput) && password === validPassword) {
+      sessionStorage.setItem('admin_authenticated', 'true');
+      sessionStorage.setItem('admin_username', username);
+      navigate('/admin/dashboard');
+      setLoading(false);
+      return;
+    }
+
+    // Secondary Supabase Auth check
     if (isSupabaseConfigured) {
       try {
         const authEmail = cleanInput.includes('@') ? cleanInput : `${cleanInput}@ieee-innovation.edu`;
@@ -32,34 +44,22 @@ export default function AdminLoginPage() {
           password,
         });
 
-        if (authError) {
-          setError(authError.message || 'Invalid administrator credentials.');
+        if (!authError) {
+          sessionStorage.setItem('admin_authenticated', 'true');
+          sessionStorage.setItem('admin_username', username);
+          navigate('/admin/dashboard');
           setLoading(false);
           return;
         }
-
-        sessionStorage.setItem('admin_authenticated', 'true');
-        sessionStorage.setItem('admin_username', username);
-        navigate('/admin/dashboard');
-        return;
       } catch (err) {
-        console.warn('Supabase auth check failed, using production credentials check:', err);
+        // Fallback
       }
     }
 
-    // Production Admin Credentials Check
-    const validUsernames = ['kazanova', 'kazanova@ieee-innovation.edu', 'admin', 'admin@ieee-innovation.edu'];
-    const validPassword = 'Kazanova54321@';
-
-    if (validUsernames.includes(cleanInput) && password === validPassword) {
-      sessionStorage.setItem('admin_authenticated', 'true');
-      sessionStorage.setItem('admin_username', username);
-      navigate('/admin/dashboard');
-    } else {
-      setError('Invalid admin username or password. Please try again.');
-    }
+    setError('Invalid admin username or password. Please check your credentials.');
     setLoading(false);
   };
+
 
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 font-sans text-slate-100">
