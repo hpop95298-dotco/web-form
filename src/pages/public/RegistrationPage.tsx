@@ -234,15 +234,15 @@ export default function RegistrationPage() {
   };
 
   const stepLabels = [
-    { num: '01', title: 'بيانات الطالب' },
-    { num: '02', title: 'الخلفية التقنية' },
-    { num: '03', title: 'الاهتمامات' },
-    { num: '04', title: 'اللابتوب' },
-    { num: '05', title: 'المراجعة والإرسال' },
+    { num: '01', title: t.step1 },
+    { num: '02', title: t.step2 },
+    { num: '03', title: t.step3 },
+    { num: '04', title: t.step4 },
+    { num: '05', title: t.step5 },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20 pt-8 selection:bg-purple-100" dir="rtl">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20 pt-8 selection:bg-purple-100" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* Header Branding */}
         <div className="flex items-center justify-between border-b border-slate-200 pb-4">
@@ -274,17 +274,17 @@ export default function RegistrationPage() {
         {/* Title */}
         <div className="space-y-1">
           <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700">
-            استمارة التسجيل الرسمية للطلاب
+            {lang === 'ar' ? 'استمارة التسجيل الرسمية للطلاب' : 'Official Student Registration'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            تقديم طلب الانضمام لرحلة تطوير الويب
+            {lang === 'ar' ? 'تقديم طلب الانضمام لرحلة تطوير الويب' : 'Web Development Journey Application'}
           </h1>
         </div>
 
         {/* Progress Bar Indicator */}
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs space-y-3">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-600">
-            <span>الخطوة {currentStep} من 5</span>
+            <span>{lang === 'ar' ? `الخطوة ${currentStep} من 5` : `Step ${currentStep} of 5`}</span>
             <span className="text-purple-700 font-bold">{stepLabels[currentStep - 1].title}</span>
           </div>
 
@@ -346,20 +346,24 @@ export default function RegistrationPage() {
           {currentStep === 1 && (
             <div className="space-y-5">
               <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-base font-bold text-slate-900">الخطوة 1 — البيانات الشخصية والأكاديمية</h2>
-                <p className="text-xs text-slate-500">يرجى إدخال بياناتك الرسمية المسجلة بالجامعة.</p>
+                <h2 className="text-base font-bold text-slate-900">
+                  {lang === 'ar' ? 'الخطوة 1 — البيانات الشخصية والأكاديمية' : 'Step 1 — Student Information'}
+                </h2>
+                <p className="text-xs text-slate-500">
+                  {lang === 'ar' ? 'يرجى إدخال بياناتك الرسمية المسجلة بالجامعة.' : 'Please enter your official university details.'}
+                </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2 space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    الاسم بالكامل (ثلاثي أو رباعي) <span className="text-rose-500">*</span>
+                    {t.fullNameLabel} <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange('fullName', e.target.value)}
-                    placeholder="مثال: أحمد محمد علي"
+                    placeholder={lang === 'ar' ? 'مثال: أحمد محمد علي' : 'e.g., Ahmed Mohamed Ali'}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs sm:text-sm outline-none"
                   />
                   {errors.fullName && <p className="text-[11px] text-rose-600">{errors.fullName}</p>}
@@ -367,13 +371,13 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    الرقم الجامعي (University ID) <span className="text-rose-500">*</span>
+                    {t.universityIdLabel} <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={formData.universityId}
                     onChange={(e) => handleInputChange('universityId', e.target.value)}
-                    placeholder="مثال: 20240182"
+                    placeholder={lang === 'ar' ? 'مثال: 20240182' : 'e.g., 20240182'}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs sm:text-sm outline-none font-mono"
                   />
                   {errors.universityId && <p className="text-[11px] text-rose-600">{errors.universityId}</p>}
@@ -381,7 +385,7 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    البريد الإلكتروني الجامعي الرسمى <span className="text-rose-500">*</span>
+                    {t.universityEmailLabel} <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -397,7 +401,7 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    رقم الهاتف / الواتساب للتواصل <span className="text-rose-500">*</span>
+                    {t.phoneLabel} <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -411,14 +415,14 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    الكلية المقيد بها <span className="text-rose-500">*</span>
+                    {t.facultyLabel} <span className="text-rose-500">*</span>
                   </label>
                   <select
                     value={formData.faculty}
                     onChange={(e) => handleInputChange('faculty', e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs sm:text-sm outline-none bg-white"
                   >
-                    <option value="">اختر الكلية</option>
+                    <option value="">{lang === 'ar' ? 'اختر الكلية' : 'Select Faculty'}</option>
                     {FACULTIES.map((fac) => (
                       <option key={fac} value={fac}>
                         {fac}
@@ -904,7 +908,8 @@ export default function RegistrationPage() {
                 disabled={isSubmitting}
                 className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-5 py-2.5 rounded-xl transition-colors flex items-center gap-1.5"
               >
-                <ChevronRight className="w-4 h-4" /> الخطوة السابقة
+                {lang === 'ar' ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+                {t.prevStep}
               </button>
             ) : (
               <div />
@@ -917,8 +922,8 @@ export default function RegistrationPage() {
                 disabled={isSubmitting}
                 className="bg-purple-700 hover:bg-purple-800 text-white text-xs font-semibold px-6 py-2.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-xs"
               >
-                {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'الخطوة التالية'}
-                {!isSubmitting && <ChevronLeft className="w-4 h-4" />}
+                {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : t.nextStep}
+                {!isSubmitting && (lang === 'ar' ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />)}
               </button>
             ) : (
               <button
@@ -928,11 +933,11 @@ export default function RegistrationPage() {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" /> جاري إرسال الطلب...
+                    <Loader2 className="w-4 h-4 animate-spin" /> {lang === 'ar' ? 'جاري إرسال الطلب...' : 'Submitting...'}
                   </>
                 ) : (
                   <>
-                    إرسال طلب التقديم النهائي
+                    {t.submitApp}
                     <CheckCircle2 className="w-4 h-4" />
                   </>
                 )}
