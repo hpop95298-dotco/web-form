@@ -24,7 +24,10 @@ import {
   ArrowLeft,
   ShieldCheck,
   Check,
+  Globe,
 } from 'lucide-react';
+import { useLanguage } from '../../stores/languageStore';
+import { TRANSLATIONS } from '../../config/translations';
 
 const INITIAL_FORM_DATA: JourneyRegistrationFormData = {
   fullName: '',
@@ -49,6 +52,8 @@ const INITIAL_FORM_DATA: JourneyRegistrationFormData = {
 export default function RegistrationPage() {
   const navigate = useNavigate();
   const isRegistrationOpen = checkIsRegistrationOpen();
+  const { lang, toggleLanguage } = useLanguage();
+  const t = TRANSLATIONS[lang];
 
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [formData, setFormData] = useState<JourneyRegistrationFormData>(INITIAL_FORM_DATA);
@@ -246,12 +251,24 @@ export default function RegistrationPage() {
             <div className="h-10 w-px bg-slate-300" />
             <img src={EVENT_CONFIG.logos.ieeeLogo} alt="IEEE Logo" className="h-14 sm:h-16 w-auto object-contain" />
           </div>
-          <Link
-            to="/"
-            className="text-xs font-semibold text-purple-700 hover:text-purple-900 flex items-center gap-1.5"
-          >
-            <ChevronRight className="w-4 h-4" /> العودة للتفاصيل الرئيسية
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="bg-slate-100 hover:bg-slate-200 text-purple-900 border border-slate-300 font-bold text-xs px-3 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-2xs"
+              title="تغيير اللغة / Switch Language"
+            >
+              <Globe className="w-3.5 h-3.5 text-purple-600" />
+              <span>{t.langToggle}</span>
+            </button>
+            <Link
+              to="/"
+              className="text-xs font-semibold text-purple-700 hover:text-purple-900 flex items-center gap-1.5"
+            >
+              {lang === 'ar' ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+              <span>{lang === 'ar' ? 'العودة للتفاصيل الرئيسية' : 'Back to Event Details'}</span>
+            </Link>
+          </div>
         </div>
 
         {/* Title */}
