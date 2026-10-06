@@ -12,7 +12,7 @@ export function useLanguage() {
     } catch (e) {
       // ignore
     }
-    return 'ar'; // Default language to Arabic as requested
+    return 'ar';
   });
 
   useEffect(() => {
