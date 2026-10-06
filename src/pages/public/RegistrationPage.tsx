@@ -114,16 +114,16 @@ export default function RegistrationPage() {
     setGeneralError(null);
 
     if (step === 1) {
-      if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required.';
-      if (!formData.universityId.trim()) newErrors.universityId = 'University ID is required.';
+      if (!formData.fullName.trim()) newErrors.fullName = 'الاسم بالكامل مطلوب.';
+      if (!formData.universityId.trim()) newErrors.universityId = 'الرقم الجامعي مطلوب.';
       if (!formData.universityEmail.trim()) {
-        newErrors.universityEmail = 'University Email is required.';
+        newErrors.universityEmail = 'البريد الإلكتروني الجامعي مطلوب.';
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.universityEmail.trim())) {
-        newErrors.universityEmail = 'Please enter a valid email address.';
+        newErrors.universityEmail = 'يرجى إدخال بريد إلكتروني صحيح.';
       }
-      if (!formData.phone.trim()) newErrors.phone = 'Phone / WhatsApp Number is required.';
-      if (!formData.faculty) newErrors.faculty = 'Please select your faculty.';
-      if (!formData.academicYear) newErrors.academicYear = 'Please select your academic year.';
+      if (!formData.phone.trim()) newErrors.phone = 'رقم الهاتف / الواتساب مطلوب.';
+      if (!formData.faculty) newErrors.faculty = 'يرجى اختيار الكلية.';
+      if (!formData.academicYear) newErrors.academicYear = 'يرجى اختيار السنة الدراسية.';
 
       if (Object.keys(newErrors).length === 0) {
         setIsSubmitting(true);
@@ -131,39 +131,39 @@ export default function RegistrationPage() {
         setIsSubmitting(false);
 
         if (dupResult.exists) {
-          setGeneralError('You have already submitted an application for the Web Development Journey.');
+          setGeneralError('لقد قمت بالتسجيل سابقاً في رحلة تطوير الويب بهذا الرقم الجامعي أو الإيميل.');
           return false;
         }
       }
     } else if (step === 2) {
       if (!formData.programmingLevel) {
-        newErrors.programmingLevel = 'Please select your current programming level.';
+        newErrors.programmingLevel = 'يرجى تحديد مستواك الحالي في البرمجة.';
       }
       if (!formData.webDevExperience) {
-        newErrors.webDevExperience = 'Please select your previous web development experience.';
+        newErrors.webDevExperience = 'يرجى تحديد خبرتك السابقة في تطوير الويب.';
       }
       if (!formData.hasWebProject) {
-        newErrors.hasWebProject = 'Please answer if you have built a Web Project before.';
+        newErrors.hasWebProject = 'يرجى الإجابة عما إذا كنت قمت ببناء مشروع ويب من قبل.';
       }
       if (formData.githubUrl && formData.githubUrl.trim() !== '') {
         if (!/^https?:\/\/(www\.)?github\.com\/.+/i.test(formData.githubUrl.trim())) {
-          newErrors.githubUrl = 'Please enter a valid GitHub profile URL (e.g., https://github.com/username).';
+          newErrors.githubUrl = 'يرجى إدخال رابط حساب GitHub صحيح (مثال: https://github.com/username).';
         }
       }
     } else if (step === 3) {
       if (!formData.interestReason.trim()) {
-        newErrors.interestReason = 'Please tell us why you are interested in joining.';
+        newErrors.interestReason = 'يرجى توضيح سبب اهتمامك بالانضمام للرحلة.';
       }
       if (formData.interestAreas.length === 0) {
-        newErrors.interestAreas = 'Please select at least one area of interest.';
+        newErrors.interestAreas = 'يرجى اختيار مجال اهتمام واحد على الأقل.';
       }
     } else if (step === 4) {
       if (!formData.hasLaptop) {
-        newErrors.hasLaptop = 'Please indicate whether you have a laptop available.';
+        newErrors.hasLaptop = 'يرجى توضيح مدى توفر اللابتوب الشخصي لديك.';
       }
     } else if (step === 5) {
       if (!formData.confirmedAccurate) {
-        newErrors.confirmedAccurate = 'You must confirm that the provided information is accurate.';
+        newErrors.confirmedAccurate = 'يجب الموافقة والإقرار بصحة البيانات المدخلة.';
       }
     }
 
@@ -219,25 +219,25 @@ export default function RegistrationPage() {
           },
         });
       } else {
-        setGeneralError(response.error || 'Submission failed. Please try again.');
+        setGeneralError(response.error || 'فشلت عملية الإرسال. يرجى المحاولة مرة أخرى.');
       }
     } catch (err) {
-      setGeneralError('An unexpected network error occurred. Please check your connection.');
+      setGeneralError('حدث خطأ في الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const stepLabels = [
-    { num: '01', title: 'Student' },
-    { num: '02', title: 'Technical' },
-    { num: '03', title: 'Interests' },
-    { num: '04', title: 'Requirements' },
-    { num: '05', title: 'Review' },
+    { num: '01', title: 'بيانات الطالب' },
+    { num: '02', title: 'الخلفية التقنية' },
+    { num: '03', title: 'الاهتمامات' },
+    { num: '04', title: 'اللابتوب' },
+    { num: '05', title: 'المراجعة والإرسال' },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20 pt-8 selection:bg-purple-100">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20 pt-8 selection:bg-purple-100" dir="rtl">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* Header Branding */}
         <div className="flex items-center justify-between border-b border-slate-200 pb-4">
@@ -250,24 +250,24 @@ export default function RegistrationPage() {
             to="/"
             className="text-xs font-semibold text-purple-700 hover:text-purple-900 flex items-center gap-1.5"
           >
-            <ChevronLeft className="w-4 h-4" /> Back to Event Details
+            <ChevronRight className="w-4 h-4" /> العودة للتفاصيل الرئيسية
           </Link>
         </div>
 
         {/* Title */}
         <div className="space-y-1">
           <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700">
-            Official Student Registration
+            استمارة التسجيل الرسمية للطلاب
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Web Development Journey Application
+            تقديم طلب الانضمام لرحلة تطوير الويب
           </h1>
         </div>
 
         {/* Progress Bar Indicator */}
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs space-y-3">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-600">
-            <span>Step {currentStep} of 5</span>
+            <span>الخطوة {currentStep} من 5</span>
             <span className="text-purple-700 font-bold">{stepLabels[currentStep - 1].title}</span>
           </div>
 
@@ -329,20 +329,20 @@ export default function RegistrationPage() {
           {currentStep === 1 && (
             <div className="space-y-5">
               <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-base font-bold text-slate-900">Step 1 — Student Information</h2>
-                <p className="text-xs text-slate-500">Please enter your official university details.</p>
+                <h2 className="text-base font-bold text-slate-900">الخطوة 1 — البيانات الشخصية والأكاديمية</h2>
+                <p className="text-xs text-slate-500">يرجى إدخال بياناتك الرسمية المسجلة بالجامعة.</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2 space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    Full Name <span className="text-rose-500">*</span>
+                    الاسم بالكامل (ثلاثي أو رباعي) <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange('fullName', e.target.value)}
-                    placeholder="e.g., Ahmed Mohamed Ali"
+                    placeholder="مثال: أحمد محمد علي"
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs sm:text-sm outline-none"
                   />
                   {errors.fullName && <p className="text-[11px] text-rose-600">{errors.fullName}</p>}
@@ -350,13 +350,13 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    University ID <span className="text-rose-500">*</span>
+                    الرقم الجامعي (University ID) <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={formData.universityId}
                     onChange={(e) => handleInputChange('universityId', e.target.value)}
-                    placeholder="e.g., 20240182"
+                    placeholder="مثال: 20240182"
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs sm:text-sm outline-none font-mono"
                   />
                   {errors.universityId && <p className="text-[11px] text-rose-600">{errors.universityId}</p>}
@@ -364,7 +364,7 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    University Email <span className="text-rose-500">*</span>
+                    البريد الإلكتروني الجامعي الرسمى <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -380,7 +380,7 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    Phone / WhatsApp Number <span className="text-rose-500">*</span>
+                    رقم الهاتف / الواتساب للتواصل <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -394,14 +394,14 @@ export default function RegistrationPage() {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    Faculty <span className="text-rose-500">*</span>
+                    الكلية المقيد بها <span className="text-rose-500">*</span>
                   </label>
                   <select
                     value={formData.faculty}
                     onChange={(e) => handleInputChange('faculty', e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs sm:text-sm outline-none bg-white"
                   >
-                    <option value="">Select Faculty</option>
+                    <option value="">اختر الكلية</option>
                     {FACULTIES.map((fac) => (
                       <option key={fac} value={fac}>
                         {fac}
@@ -413,7 +413,7 @@ export default function RegistrationPage() {
 
                 <div className="sm:col-span-2 space-y-1.5">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    Academic Year <span className="text-rose-500">*</span>
+                    السنة الدراسية الحالية <span className="text-rose-500">*</span>
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                     {ACADEMIC_YEARS.map((yr) => (
@@ -449,18 +449,18 @@ export default function RegistrationPage() {
           {currentStep === 2 && (
             <div className="space-y-5">
               <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-base font-bold text-slate-900">Step 2 — Technical Background</h2>
+                <h2 className="text-base font-bold text-slate-900">الخطوة 2 — الخلفية والخبرات التقنية</h2>
                 <p className="text-xs text-slate-500">
-                  Help us understand your current programming level and experience.
+                  ساعدنا في فهم مستواك الحالي بالبرمجة لتوجيهك بشكل أفضل.
                 </p>
               </div>
 
               {/* Programming Level */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Current Programming Level <span className="text-rose-500">*</span>
+                  مستواك الحالي في البرمجة <span className="text-rose-500">*</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {PROGRAMMING_LEVELS.map((lvl) => (
                     <label
                       key={lvl}
@@ -490,7 +490,7 @@ export default function RegistrationPage() {
               {/* Web Experience */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Previous Web Development Experience <span className="text-rose-500">*</span>
+                  خبرتك السابقة في تطوير الويب <span className="text-rose-500">*</span>
                 </label>
                 <div className="space-y-2">
                   {WEB_EXPERIENCES.map((exp) => (
@@ -522,7 +522,7 @@ export default function RegistrationPage() {
               {/* Selectable Tech Chips */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Technologies Previously Used
+                  التقنيات التي تعاملت معها سابقاً (اختر ما ينطبق عليك)
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {TECHNOLOGIES_LIST.map((tech) => {
@@ -548,13 +548,13 @@ export default function RegistrationPage() {
                   })}
                 </div>
 
-                {formData.technologies.includes('Other') && (
+                {formData.technologies.includes('أخرى') && (
                   <div className="pt-1.5">
                     <input
                       type="text"
                       value={formData.otherTechnologies || ''}
                       onChange={(e) => handleInputChange('otherTechnologies', e.target.value)}
-                      placeholder="Specify other technologies..."
+                      placeholder="اذكر التقنيات الأخرى..."
                       className="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs outline-none"
                     />
                   </div>
@@ -564,7 +564,7 @@ export default function RegistrationPage() {
               {/* Web Project Question */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Have you built a Web Project before? <span className="text-rose-500">*</span>
+                  هل قمت ببناء مشروع ويب سابقاً؟ <span className="text-rose-500">*</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   {WEB_PROJECT_OPTIONS.map((opt) => (
@@ -594,16 +594,16 @@ export default function RegistrationPage() {
               </div>
 
               {/* CONDITIONAL DISPLAY: Show Project Description ONLY if user chose a project option */}
-              {formData.hasWebProject && formData.hasWebProject !== 'No' && (
+              {formData.hasWebProject && formData.hasWebProject !== 'لا' && formData.hasWebProject !== 'No' && (
                 <div className="space-y-1 animate-fade-in">
                   <label className="block text-xs font-semibold text-slate-700 uppercase">
-                    Project Description (Optional)
+                    وصف مختصر عن مشاريعك السابقة (اختياري)
                   </label>
                   <textarea
                     rows={3}
                     value={formData.projectDescription || ''}
                     onChange={(e) => handleInputChange('projectDescription', e.target.value)}
-                    placeholder="Briefly describe what you built..."
+                    placeholder="اكتب نبذة مختصرة عن المشروع والتقنيات المستخدمة فيه..."
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs outline-none"
                   />
                 </div>
@@ -612,7 +612,7 @@ export default function RegistrationPage() {
               {/* GitHub */}
               <div className="space-y-1">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  GitHub Profile (Optional)
+                  رابط حسابك على GitHub (اختياري)
                 </label>
                 <input
                   type="url"
@@ -630,22 +630,22 @@ export default function RegistrationPage() {
           {currentStep === 3 && (
             <div className="space-y-5">
               <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-base font-bold text-slate-900">Step 3 — Your Interest</h2>
+                <h2 className="text-base font-bold text-slate-900">الخطوة 3 — الاهتمامات والدوافع</h2>
                 <p className="text-xs text-slate-500">
-                  Share your motivation and select topics you wish to explore.
+                  شاركنا سبب اهتمامك والمواضيع التي تتطلع لتعلمها بالرحلة.
                 </p>
               </div>
 
               <div className="space-y-1">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Why are you interested in joining the Web Development Journey?{' '}
+                  لماذا ترغب في الانضمام لرحلة تطوير الويب؟{' '}
                   <span className="text-rose-500">*</span>
                 </label>
                 <textarea
                   rows={4}
                   value={formData.interestReason}
                   onChange={(e) => handleInputChange('interestReason', e.target.value)}
-                  placeholder="Share your learning goals and what you hope to achieve..."
+                  placeholder="اكتب أهدافك التعليمية وما تأمل في تحقيقه بنهاية هذه الفعالية..."
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-purple-600 text-xs outline-none"
                 />
                 {errors.interestReason && (
@@ -656,7 +656,7 @@ export default function RegistrationPage() {
               {/* Selectable Cards for Areas of Interest */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Areas of Interest <span className="text-rose-500">*</span>
+                  المجالات والمواضيع المهتم بالتركيز عليها <span className="text-rose-500">*</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {INTEREST_AREAS_LIST.map((area) => {
@@ -692,32 +692,35 @@ export default function RegistrationPage() {
           {currentStep === 4 && (
             <div className="space-y-5">
               <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-base font-bold text-slate-900">Step 4 — Laptop Requirement</h2>
-                <p className="text-xs text-slate-500">Confirm equipment readiness for practical sessions.</p>
+                <h2 className="text-base font-bold text-slate-900">الخطوة 4 — المتطلبات الإجبارية</h2>
+                <p className="text-xs text-slate-500">تأكيد توفر الجهاز المطلوب لحضور الجلسات التطبيقية.</p>
               </div>
 
               <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 space-y-2">
                 <div className="flex items-center gap-2.5 text-amber-950 font-bold text-sm">
                   <Laptop className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                  <span>Hardware Requirement Notice</span>
+                  <span>تنبيه هائم بشرط اللابتوب</span>
                 </div>
                 <p className="text-xs text-amber-900 font-medium leading-relaxed">
-                  ⚠️ A laptop is mandatory for practical sessions and full participation in the Web Development Journey.
+                  ⚠️ توفر اللابتوب الشخصي شرط أساسي وإجباري لحضور الورش والتطبيقات العملية المباشرة.
                 </p>
               </div>
 
               <div className="space-y-2 pt-2">
                 <label className="block text-xs font-semibold text-slate-700 uppercase">
-                  Do you have a laptop that you can bring to the sessions?{' '}
+                  هل يتوفر لديك لابتوب يمكنك إحضاره في الجلسات؟{' '}
                   <span className="text-rose-500">*</span>
                 </label>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Yes', 'No'].map((opt) => (
+                  {[
+                    { key: 'Yes', label: 'نعم، يتيح لدي لابتوب' },
+                    { key: 'No', label: 'لا، لا يتوفر لدي لابتوب' },
+                  ].map((opt) => (
                     <label
-                      key={opt}
+                      key={opt.key}
                       className={`border rounded-2xl p-4 text-center text-xs sm:text-sm font-bold cursor-pointer transition-all ${
-                        formData.hasLaptop === opt
-                          ? opt === 'Yes'
+                        formData.hasLaptop === opt.key
+                          ? opt.key === 'Yes'
                             ? 'border-emerald-600 bg-emerald-50 text-emerald-800'
                             : 'border-rose-600 bg-rose-50 text-rose-800'
                           : 'border-slate-200 hover:bg-slate-50 text-slate-700'
@@ -726,12 +729,12 @@ export default function RegistrationPage() {
                       <input
                         type="radio"
                         name="hasLaptop"
-                        value={opt}
-                        checked={formData.hasLaptop === opt}
+                        value={opt.key}
+                        checked={formData.hasLaptop === opt.key}
                         onChange={(e) => handleInputChange('hasLaptop', e.target.value)}
                         className="sr-only"
                       />
-                      {opt === 'Yes' ? 'Yes, I have a laptop' : 'No, I do not have a laptop'}
+                      {opt.label}
                     </label>
                   ))}
                 </div>
@@ -744,9 +747,9 @@ export default function RegistrationPage() {
           {currentStep === 5 && (
             <div className="space-y-5">
               <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-base font-bold text-slate-900">Step 5 — Review & Submit</h2>
+                <h2 className="text-base font-bold text-slate-900">الخطوة 5 — المراجعة والإرسال النهائى</h2>
                 <p className="text-xs text-slate-500">
-                  Please review all entered information carefully before submitting your application.
+                  يرجى مراجعة كافة البيانات المدخلة بعناية قبل التأكيد وإرسال الطلب.
                 </p>
               </div>
 
@@ -754,82 +757,82 @@ export default function RegistrationPage() {
               <div className="space-y-3">
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-xs">
                   <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                    <span className="font-bold uppercase text-purple-800">1. Student Info</span>
+                    <span className="font-bold uppercase text-purple-800">1. البيانات الشخصية</span>
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
                       className="text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1"
                     >
-                      <Edit3 className="w-3.5 h-3.5" /> Edit →
+                      <Edit3 className="w-3.5 h-3.5" /> تعديل ←
                     </button>
                   </div>
                   <div className="grid grid-cols-2 gap-1.5 text-slate-700">
                     <div>
-                      <span className="text-slate-400">Name:</span> {formData.fullName}
+                      <span className="text-slate-400">الاسم:</span> {formData.fullName}
                     </div>
                     <div>
-                      <span className="text-slate-400">ID:</span> {formData.universityId}
+                      <span className="text-slate-400">الرقم الجامعي:</span> {formData.universityId}
                     </div>
                     <div>
-                      <span className="text-slate-400">Email:</span> {formData.universityEmail}
+                      <span className="text-slate-400">البريد:</span> {formData.universityEmail}
                     </div>
                     <div>
-                      <span className="text-slate-400">Phone:</span> {formData.phone}
+                      <span className="text-slate-400">الهاتف:</span> {formData.phone}
                     </div>
                     <div>
-                      <span className="text-slate-400">Faculty:</span> {formData.faculty}
+                      <span className="text-slate-400">الكلية:</span> {formData.faculty}
                     </div>
                     <div>
-                      <span className="text-slate-400">Year:</span> {formData.academicYear}
+                      <span className="text-slate-400">السنة:</span> {formData.academicYear}
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-xs">
                   <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                    <span className="font-bold uppercase text-purple-800">2. Technical Background</span>
+                    <span className="font-bold uppercase text-purple-800">2. الخلفية التقنية</span>
                     <button
                       type="button"
                       onClick={() => setCurrentStep(2)}
                       className="text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1"
                     >
-                      <Edit3 className="w-3.5 h-3.5" /> Edit →
+                      <Edit3 className="w-3.5 h-3.5" /> تعديل ←
                     </button>
                   </div>
                   <div className="text-slate-700 space-y-1">
                     <div>
-                      <span className="text-slate-400">Level:</span> {formData.programmingLevel}
+                      <span className="text-slate-400">المستوى البرمجي:</span> {formData.programmingLevel}
                     </div>
                     <div>
-                      <span className="text-slate-400">Experience:</span> {formData.webDevExperience}
+                      <span className="text-slate-400">الخبرة:</span> {formData.webDevExperience}
                     </div>
                     <div>
-                      <span className="text-slate-400">Tech:</span>{' '}
-                      {formData.technologies.join(', ') || 'None'}
+                      <span className="text-slate-400">التقنيات:</span>{' '}
+                      {formData.technologies.join(', ') || 'لا يوجد'}
                     </div>
                     <div>
-                      <span className="text-slate-400">Web Project:</span> {formData.hasWebProject}
+                      <span className="text-slate-400">مشروع ويب:</span> {formData.hasWebProject}
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-xs">
                   <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                    <span className="font-bold uppercase text-purple-800">3. Interests</span>
+                    <span className="font-bold uppercase text-purple-800">3. الاهتمامات</span>
                     <button
                       type="button"
                       onClick={() => setCurrentStep(3)}
                       className="text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1"
                     >
-                      <Edit3 className="w-3.5 h-3.5" /> Edit →
+                      <Edit3 className="w-3.5 h-3.5" /> تعديل ←
                     </button>
                   </div>
                   <div className="text-slate-700 space-y-1">
                     <div>
-                      <span className="text-slate-400">Motivation:</span> {formData.interestReason}
+                      <span className="text-slate-400">سبب الانضمام:</span> {formData.interestReason}
                     </div>
                     <div>
-                      <span className="text-slate-400">Areas:</span>{' '}
+                      <span className="text-slate-400">المجالات:</span>{' '}
                       {formData.interestAreas.join(', ')}
                     </div>
                   </div>
@@ -837,19 +840,19 @@ export default function RegistrationPage() {
 
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-xs">
                   <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                    <span className="font-bold uppercase text-purple-800">4. Laptop</span>
+                    <span className="font-bold uppercase text-purple-800">4. اللابتوب</span>
                     <button
                       type="button"
                       onClick={() => setCurrentStep(4)}
                       className="text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1"
                     >
-                      <Edit3 className="w-3.5 h-3.5" /> Edit →
+                      <Edit3 className="w-3.5 h-3.5" /> تعديل ←
                     </button>
                   </div>
                   <div className="text-slate-700">
-                    <span className="text-slate-400">Laptop Available:</span>{' '}
+                    <span className="text-slate-400">توفر اللابتوب:</span>{' '}
                     <strong className={formData.hasLaptop === 'Yes' ? 'text-emerald-700' : 'text-rose-700'}>
-                      {formData.hasLaptop}
+                      {formData.hasLaptop === 'Yes' ? 'نعم متوفر' : 'غير متوفر'}
                     </strong>
                   </div>
                 </div>
@@ -865,7 +868,7 @@ export default function RegistrationPage() {
                     className="mt-0.5 rounded text-purple-600 focus:ring-purple-500 h-4 w-4"
                   />
                   <span className="text-xs font-semibold text-purple-950">
-                    I confirm that the information provided is accurate and truthful.
+                    أقر وأؤكد أن جميع البيانات والمعلومات المذكورة أعلاه صحيحة ودقيقة على مسؤوليتي الشخصية.
                   </span>
                 </label>
                 {errors.confirmedAccurate && (
@@ -884,7 +887,7 @@ export default function RegistrationPage() {
                 disabled={isSubmitting}
                 className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-5 py-2.5 rounded-xl transition-colors flex items-center gap-1.5"
               >
-                <ChevronLeft className="w-4 h-4" /> Back
+                <ChevronRight className="w-4 h-4" /> الخطوة السابقة
               </button>
             ) : (
               <div />
@@ -897,8 +900,8 @@ export default function RegistrationPage() {
                 disabled={isSubmitting}
                 className="bg-purple-700 hover:bg-purple-800 text-white text-xs font-semibold px-6 py-2.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-xs"
               >
-                {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Next'}
-                {!isSubmitting && <ChevronRight className="w-4 h-4" />}
+                {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'الخطوة التالية'}
+                {!isSubmitting && <ChevronLeft className="w-4 h-4" />}
               </button>
             ) : (
               <button
@@ -908,11 +911,11 @@ export default function RegistrationPage() {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" /> Submitting...
+                    <Loader2 className="w-4 h-4 animate-spin" /> جاري إرسال الطلب...
                   </>
                 ) : (
                   <>
-                    Submit Application
+                    إرسال طلب التقديم النهائي
                     <CheckCircle2 className="w-4 h-4" />
                   </>
                 )}

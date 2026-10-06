@@ -5,6 +5,12 @@
 export type ApplicationStatus = 'Submitted' | 'Under Review' | 'Accepted' | 'Waitlisted' | 'Rejected';
 
 export type FacultyOption =
+  | 'كلية الحاسبات وتكنولوجيا المعلومات'
+  | 'كلية الهندسة'
+  | 'كلية إدارة الأعمال'
+  | 'كلية طب الأسنان'
+  | 'كلية الصيدلة'
+  | 'أخرى'
   | 'Faculty of Computers & Information Technology'
   | 'Faculty of Engineering'
   | 'Faculty of Business'
@@ -13,52 +19,56 @@ export type FacultyOption =
   | 'Other';
 
 export const FACULTIES: FacultyOption[] = [
-  'Faculty of Computers & Information Technology',
-  'Faculty of Engineering',
-  'Faculty of Business',
-  'Faculty of Dentistry',
-  'Faculty of Pharmacy',
-  'Other',
+  'كلية الحاسبات وتكنولوجيا المعلومات',
+  'كلية الهندسة',
+  'كلية إدارة الأعمال',
+  'كلية طب الأسنان',
+  'كلية الصيدلة',
+  'أخرى',
 ];
 
-export type AcademicYearOption = '1st Year' | '2nd Year' | '3rd Year' | '4th Year' | 'Other';
+export type AcademicYearOption = 'السنة الأولى (أولى)' | 'السنة الثانية (ثانية)' | 'السنة الثالثة (ثالثة)' | 'السنة الرابعة (رابعة)' | 'أخرى' | '1st Year' | '2nd Year' | '3rd Year' | '4th Year' | 'Other';
 
 export const ACADEMIC_YEARS: AcademicYearOption[] = [
-  '1st Year',
-  '2nd Year',
-  '3rd Year',
-  '4th Year',
-  'Other',
+  'السنة الأولى (أولى)',
+  'السنة الثانية (ثانية)',
+  'السنة الثالثة (ثالثة)',
+  'السنة الرابعة (رابعة)',
+  'أخرى',
 ];
 
-export type ProgrammingLevelOption = 'Beginner' | 'Basic' | 'Intermediate' | 'Advanced';
+export type ProgrammingLevelOption = 'مبتدئ تماماً (بدون خبرة)' | 'أساسي (أعرف المفاهيم البسيطة)' | 'متوسط (كتبت كود سابقاً)' | 'متقدم (بنيت مشاريع برمجية)' | 'Beginner' | 'Basic' | 'Intermediate' | 'Advanced';
 
 export const PROGRAMMING_LEVELS: ProgrammingLevelOption[] = [
-  'Beginner',
-  'Basic',
-  'Intermediate',
-  'Advanced',
+  'مبتدئ تماماً (بدون خبرة)',
+  'أساسي (أعرف المفاهيم البسيطة)',
+  'متوسط (كتبت كود سابقاً)',
+  'متقدم (بنيت مشاريع برمجية)',
 ];
 
 export type WebExperienceOption =
+  | 'لا، هذه أول مرة بالنسبة لي'
+  | 'نعم، مفاهيم أساسية فقط'
+  | 'نعم، لدي بعض الخبرة العملية'
+  | 'نعم، قمت ببناء مشاريع ويب سابقة'
   | 'No, this is my first time'
   | 'Yes, but only basic concepts'
   | 'Yes, I have some practical experience'
   | 'Yes, I have built Web Projects before';
 
 export const WEB_EXPERIENCES: WebExperienceOption[] = [
-  'No, this is my first time',
-  'Yes, but only basic concepts',
-  'Yes, I have some practical experience',
-  'Yes, I have built Web Projects before',
+  'لا، هذه أول مرة بالنسبة لي',
+  'نعم، مفاهيم أساسية فقط',
+  'نعم، لدي بعض الخبرة العملية',
+  'نعم، قمت ببناء مشاريع ويب سابقة',
 ];
 
-export type WebProjectOption = 'No' | 'Yes, a small project' | 'Yes, multiple projects';
+export type WebProjectOption = 'لا' | 'نعم، مشروع صغير' | 'نعم، عدة مشاريع' | 'No' | 'Yes, a small project' | 'Yes, multiple projects';
 
 export const WEB_PROJECT_OPTIONS: WebProjectOption[] = [
-  'No',
-  'Yes, a small project',
-  'Yes, multiple projects',
+  'لا',
+  'نعم، مشروع صغير',
+  'نعم، عدة مشاريع',
 ];
 
 export const TECHNOLOGIES_LIST = [
@@ -71,21 +81,21 @@ export const TECHNOLOGIES_LIST = [
   'Java',
   'SQL',
   'Git / GitHub',
-  'None',
-  'Other',
+  'لا يوجد',
+  'أخرى',
 ] as const;
 
 export type TechnologyOption = typeof TECHNOLOGIES_LIST[number];
 
 export const INTEREST_AREAS_LIST = [
-  'Front-End Development',
-  'Back-End Development',
-  'Database & SQL',
-  '.NET Development',
-  'Full-Stack Development',
-  'Freelancing',
-  'Career Development',
-  'Building Real Web Applications',
+  'تطوير الواجهات الأمامية (Front-End)',
+  'تطوير الخلفيات والقواعد (Back-End)',
+  'قواعد البيانات (Database & SQL)',
+  'تطوير تطبيقات .NET',
+  'تطوير الويب المتكامل (Full-Stack)',
+  'العمل الحر (Freelancing)',
+  'التطوير المهني والوظيفي',
+  'بناء تطبيقات ويب حقيقية',
 ] as const;
 
 export type InterestAreaOption = typeof INTEREST_AREAS_LIST[number];
