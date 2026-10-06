@@ -433,12 +433,21 @@ export async function deleteApplication(id: string): Promise<boolean> {
   if (isSupabaseConfigured) {
     try {
       const { error } = await supabase.from('applications').delete().eq('id', id);
-      if (!error) return true;
+      if (!error) {
+        // Also remove from local storage if mirrored
+        const storedApps = getStoredApplications();
+        const filtered = storedApps.filter((a) => a.id !== id);
+        saveStoredApplications(filtered);
+        return true;
+      } else {
+        console.warn('Supabase delete error:', error);
+      }
     } catch (err) {
       console.warn('Failed to delete application in Supabase:', err);
     }
   }
 
+  // Fallback to local storage delete if Supabase delete is restricted by RLS
   const storedApps = getStoredApplications();
   const filtered = storedApps.filter((a) => a.id !== id);
   saveStoredApplications(filtered);
