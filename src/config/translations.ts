@@ -14,7 +14,7 @@ export const TRANSLATIONS = {
     backToTop: 'العودة للأعلى ↑',
     daysLeft: 'أيام متبقية',
     regOpen: 'التسجيل مفتوح الآن',
-    regClosed: 'التسجيل مغلق',
+    regClosed: 'تم استكمال العدد المطلوب (مغلق)',
 
     // Landing Page
     heroTitle: 'رحلة تطوير الويب',
@@ -140,7 +140,7 @@ export const TRANSLATIONS = {
     backToTop: 'Back to Top ↑',
     daysLeft: 'days left',
     regOpen: 'REGISTRATION OPEN',
-    regClosed: 'Registration Closed',
+    regClosed: 'Capacity Reached (Closed)',
 
     // Landing Page
     heroTitle: 'Web Development Journey',

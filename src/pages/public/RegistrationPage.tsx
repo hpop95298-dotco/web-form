@@ -63,24 +63,66 @@ export default function RegistrationPage() {
 
   if (!isRegistrationOpen) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white border border-slate-200 rounded-2xl p-8 shadow-sm text-center space-y-6">
-          <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto">
-            <AlertTriangle className="w-8 h-8" />
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 font-sans text-slate-100" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+        <div className="max-w-lg w-full bg-slate-800 border border-slate-700 rounded-3xl p-8 sm:p-10 shadow-2xl text-center space-y-7 animate-in fade-in zoom-in-95">
+          {/* Header Logos */}
+          <div className="flex items-center justify-center gap-4 bg-white/5 py-2.5 px-4 rounded-2xl border border-slate-700/60 max-w-xs mx-auto">
+            <img src={EVENT_CONFIG.logos.iuLogo} alt="IU" className="h-10 w-auto object-contain" />
+            <div className="h-6 w-px bg-slate-700" />
+            <img src={EVENT_CONFIG.logos.ieeeLogo} alt="IEEE" className="h-10 w-auto object-contain" />
           </div>
-          <div className="space-y-2">
-            <h1 className="text-2xl font-extrabold text-slate-900">Registration Closed</h1>
-            <p className="text-xs text-slate-600">
-              Thank you for your interest in the Web Development Journey. The registration window for this cycle has now closed.
+
+          {/* Status Icon */}
+          <div className="w-20 h-20 bg-amber-500/10 border-2 border-amber-500/30 text-amber-400 rounded-full flex items-center justify-center mx-auto shadow-inner">
+            <AlertTriangle className="w-10 h-10" />
+          </div>
+
+          {/* Headline & Notice */}
+          <div className="space-y-3">
+            <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-950/80 border border-amber-800/80 px-3.5 py-1 rounded-full inline-block">
+              {lang === 'ar' ? 'تم استكمال العدد المطلوب' : 'CAPACITY REACHED'}
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-black text-white">
+              {lang === 'ar' ? 'عفواً، تم إغلاق باب التقديم' : 'Registration Closed'}
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
+              {lang === 'ar'
+                ? 'نظراً للإقبال الكبير، تم استكمال العدد المحدد لرحلة تطوير الويب (Web Development Journey) لهذا الموسم بنجاح. برجاء الانتظار ومتابعة القنوات الرسمية لأي إشعار قادم أو مواسم جديدة.'
+                : 'Due to overwhelming interest, the candidate capacity for this cycle of the Web Development Journey has been reached. Please stay tuned to our official channels for future announcements.'}
             </p>
           </div>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Event Details
-          </Link>
+
+          {/* Guidance Info Card */}
+          <div className="bg-slate-900/80 border border-slate-700/80 rounded-2xl p-4 text-xs text-slate-300 space-y-2 text-right sm:text-center">
+            <div className="font-bold text-purple-400">
+              {lang === 'ar' ? '💡 هل سجلت مسبقاً؟' : '💡 Already registered?'}
+            </div>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              {lang === 'ar'
+                ? 'إذا كنت قد سجلت بالفعل قبل إغلاق الاستمارة، فطلبك مسجل في النظام وجاري مراجعته، وسيصلك إشعار القبول والتفاصيل عبر البريد الإلكتروني والواتساب.'
+                : 'If you submitted earlier, your application is logged and being reviewed. You will receive updates via email and WhatsApp.'}
+            </p>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              to="/"
+              className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold px-6 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg"
+            >
+              {lang === 'ar' ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+              {lang === 'ar' ? 'العودة للصفحة الرئيسية' : 'Back to Home'}
+            </Link>
+
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold px-4 py-3 rounded-xl transition-all flex items-center justify-center gap-1.5"
+            >
+              <Globe className="w-3.5 h-3.5 text-purple-400" />
+              <span>{t.langToggle}</span>
+            </button>
+          </div>
         </div>
       </div>
     );

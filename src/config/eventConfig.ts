@@ -185,19 +185,12 @@ export const EVENT_CONFIG: EventConfig = {
 };
 
 /**
- * Checks whether registration is currently open based on configuration dates
+ * Checks whether registration is currently open based on configuration and capacity
+ * Set to false when target candidate capacity is reached.
  */
 export function checkIsRegistrationOpen(): boolean {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const startDate = new Date(EVENT_CONFIG.registrationStartDate);
-  startDate.setHours(0, 0, 0, 0);
-
-  const endDate = new Date(EVENT_CONFIG.registrationEndDate);
-  endDate.setHours(23, 59, 59, 999);
-
-  return today >= startDate && today <= endDate;
+  // Capacity reached: Registration is closed for this cycle
+  return false;
 }
 
 /**
